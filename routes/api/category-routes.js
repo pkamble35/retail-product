@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
-  Book.update(
+  Category.update(
     {
       // All the fields you can update and the data attached to the request body.
       category_name: req.body.category_name
@@ -41,7 +41,7 @@ router.put('/:id', (req, res) => {
     {
       // Gets the books based on the isbn given in the request parameters
       where: {
-        isbn: req.params.id,
+        id: req.params.id,
       },
     }
   )
@@ -57,7 +57,7 @@ router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
   Category.destroy({
     where: {
-      isbn: req.params.id,
+      id: req.params.id,
     },
   })
     .then((deletedCategory) => {
