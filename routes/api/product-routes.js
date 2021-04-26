@@ -9,7 +9,19 @@ router.get('/', async (req, res) => {
   // be sure to include its associated Category and Tag data
   try {
     const productData = await Product.findAll({
-      include: [{ model: Category }, { model: Tag }],
+      include: [{ model: Category },
+        {
+          model: Tag,
+          required: false,
+          as: 'tags',
+          // Pass in the Product attributes that you want to retrieve
+          attributes: ['id', 'tag_name'],
+          through: {
+            // This block of code allows you to retrieve the properties of the join table
+            model: ProductTag,
+            as: 'product_tag'
+          }
+        }]
     });
     res.status(200).json(productData);
   } catch (err) {
@@ -23,9 +35,21 @@ router.get('/:id', async (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
   try {
-    const productData = await Product.findByPk(req.params.id, {
-      include: [{ model: License }, { model: Car }],
-    });
+    const productData = await Product.findByPk(req.params.id,{ 
+      include: [{ model: Category },
+        {
+          model: Tag,
+          required: false,
+          as: 'tags',
+          // Pass in the Product attributes that you want to retrieve
+          attributes: ['id', 'tag_name'],
+          through: {
+            // This block of code allows you to retrieve the properties of the join table
+            model: ProductTag,
+            as: 'product_tag'
+          }
+        }]
+      });
 
     if (!productData) {
       res.status(404).json({ message: 'No Product found with that id!' });
@@ -115,13 +139,20 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
-  Product.destroy({
+  ProductTag.destroy({
     where: {
-      id: req.params.id,
+      product_id: req.params.id,
     },
   })
-    .then((deletedCategory) => {
-      res.json(deletedCategory);
+    .then((deleteProduct) => {
+      Product.destroy({
+        where: {
+          id: req.params.id,
+        },
+      })
+        .then((deletedProduct) => {
+          res.json(deletedProduct);
+        })
     })
     .catch((err) => res.json(err));
 
