@@ -1,6 +1,20 @@
 # Retail Product API
 This is application is the back end for an e-commerce site. This is Express.js API that uses Sequelize to interact with a MySQL database.
+## Table of Contents 
+==================================
+* [Installation](#Installation)
+* [Usage](#Usage)
+* [Endpoints](#Endpoints)
+* [License](#License)
+* [Contributing](#Contributing)
+* [Test](#Test)
 
+
+
+## Installation
+Below command should be executed npm run start
+## Usage
+Use this application to manage products for e-commerce site.
 ## Endpoints
 
 The Express API to the app is described below.
@@ -37,17 +51,6 @@ The Express API to the app is described below.
     Content-Length: 2
 
     [{"id":1,"product_name":"Plain T-Shirt","price":15,"stock":14,"category_id":1,"category":{"id":1,"category_name":"Shirts"},"tags":[{"id":6,"tag_name":"white","product_tag":{"id":1,"product_id":1,"tag_id":6}}]
-## Table of Contents 
-==================================
-* [Installation](#Installation)
-* [Usage](#Usage)
-* [License](#License)
-* [Contributing](#Contributing)
-* [Test](#Test)
-## Installation
-Below command should be executed npm run start
-## Usage
-Use this application to manage and track employees.
 ## Contribution
 To contribute to this project, please make sure you follow the guidelines in The Contributor Covenant as general guidelines.
 ## Test
