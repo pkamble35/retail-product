@@ -20,29 +20,7 @@ The REST API to the example app is described below.
     Content-Type: application/json
     Content-Length: 2
 
-    [
-  {
-    "id": 1,
-    "product_name": "Plain T-Shirt",
-    "price": 15,
-    "stock": 14,
-    "category_id": 1,
-    "category": {
-      "id": 1,
-      "category_name": "Shirts"
-    },
-    "tags": [
-      {
-        "id": 6,
-        "tag_name": "white",
-        "product_tag": {
-          "id": 1,
-          "product_id": 1,
-          "tag_id": 6
-        }
-      }]
-  }
-    ]
+    [{"id":1,"product_name":"Plain T-Shirt","price":15,"stock":14,"category_id":1,"category":{"id":1,"category_name":"Shirts"},"tags":[{"id":6,"tag_name":"white","product_tag":{"id":1,"product_id":1,"tag_id":6}}]
 ## Table of Contents 
 ==================================
 * [Installation](#Installation)
